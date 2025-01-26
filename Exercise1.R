@@ -7,7 +7,7 @@ library(tidyselect)
 library(readxl)
 library(readr)
 library(ggplot2)
-
+library(dplyr)
 #Importing the dataset
 df <- read_excel("Student_Performance.xlsx")
 view(df)
@@ -49,4 +49,9 @@ glimpse(df)
 #Showing the names of the variables or columns
 names(df)
 
+#Handling missing values
+df %>% 
+  select("Access_No","Gender","Age","Course","DSC3108","DSC3114","MTH3108","SYE3104") %>% 
+  filter(!complete.cases(.)) %>% 
+  view()
 
