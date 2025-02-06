@@ -4,6 +4,7 @@ library(readxl)
 library(ggplot2)
 library(tidyselect)
 library(nycflights13)
+library(tidyr)
 
 #Exploring the dataset of nycflights13
 ?flights
@@ -42,17 +43,20 @@ select(flights, year:day)
 rename(flights,tail_num = tailnum)
 
 #Mutation(Addition of columns gain = dep_delay-arr_delay, speed =distance/airtime*60)
-flight_sml <- select(flights
+flight_sml <- select(flights,
   year:day,
   ends_with("delay"),
   distance,
   air_time)
 
-flight_sml2 <- mutate(flight_sml,
-                      gain = dep_delay - arr_delay,
+flight_sml2 <- mutate(flight_sml,gain = dep_delay - arr_delay,
                       speed = distance/air_time *60)
+view(flight_sml2)
 
 #To permanently add them to your data
-transmute((flight_sml,
+transmute(flight_sml,
            gain = dep_delay - arr_delay,
-           speed = distance/air_time *60))
+           speed = distance/air_time *60)
+
+view(flight_sml)
+ 
