@@ -8,6 +8,8 @@ setwd("C:/Users/HP PC/Desktop/BSDS 2_2/BIG DATA ANALYTICS")
 library(tidyverse)
 library(dplyr)
 library(ggplot2)
+library(purrr)
+library(GGally)
 
 ##Loading data
 data <- read.csv("C:/Users/HP PC/Desktop/BSDS 2_2/BIG DATA ANALYTICS/class Discussion/class Discussion/Diamond dataset/diamonds.csv")
@@ -62,6 +64,14 @@ impute_mode <- function(x){
 impute_mean(data$depth)
 impute_mode(data$color)
 
+##Outliers
+##Incosistencies in the data
+##Visualizing outliers
+
+numerical_data <- data %>%  select_if(is.numeric)
+view(numerical_data)
+
+##Plotting boxplots to show 
 
 
 
