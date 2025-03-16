@@ -8,6 +8,11 @@ library(readxl)
 library(readr)
 library(ggplot2)
 library(dplyr)
+library(data.table)
+
+
+library(munsell)
+
 #Importing the dataset
 df <- read_excel("Student_Performance.xlsx")
 view(df)
@@ -55,3 +60,8 @@ df %>%
   filter(!complete.cases(.)) %>% 
   view()
 
+#subsetting the dataset to students doing datascience and are females
+
+female_ds <- df["Gender" == "Female" & "Course" == "Bsc Datas Science"]
+view(female_ds)
+ 
